@@ -87,6 +87,12 @@ export const Carrinho = () => {
                             <h3 className="p-2" style={{ color: "#3655C7" }}>R$ 5,00</h3>
                         </div>
                     </div>
+                    <div className="d-flex justify-content-end">
+                        <h2>Total R$ 10,00</h2>
+                    </div>
+                    <div className="d-flex justify-content-end">
+                    <Button className="p-2" variant="primary" style={{ border: "none", width: "200px", height: "50px", borderRadius: "15px", background: "#3655C7" }}>Comprar</Button>
+                    </div>
                 </div>
             </div>
         </div>
