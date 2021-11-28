@@ -13,24 +13,6 @@ export const style = () => {
         height: "100px"
     }
 
-    const ButtonBuscar = {
-        background: "#3655C7",
-        color: "white",
-        borderRadius: "15px",
-        width: "60px"
-    }   
-
-    const Fundo = {
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        background: "#E0E5F2"
-    }
-    const FundoForm = {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: 'center',
-    }
     const Formul = {
         textAlign: "center",
         padding: '50px',

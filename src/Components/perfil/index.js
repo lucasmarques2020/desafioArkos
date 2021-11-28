@@ -2,12 +2,9 @@ import React, { Components }  from 'react'
 import { Button, Container, Navbar, Dropdown, Form, InputGroup, FormControl, Badge, Nav } from 'react-bootstrap'
 import { style } from './styles'
 import Logo from '../assets/logo.svg';
-import Buscar from '../assets/buscar.svg';
 import Buy from '../assets/buy.svg';
-import Buy2 from '../assets/buy2.svg';
 import Profile from '../assets/profile.svg';
 import Exit from '../assets/exit.svg';
-import Star from '../assets/star.svg';
 
 export const EditarPerfil = () => {
     const estilo = style()
@@ -46,7 +43,7 @@ export const EditarPerfil = () => {
             </Nav.Item>
             </Nav>
             </div>
-            <div className="row h-75 w-100 d-flex justify-content-start p-5">
+            <div className="row h-75 w-100 d-flex justify-content-start">
            
                 <div className="Search">
                     
