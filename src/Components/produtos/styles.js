@@ -9,12 +9,15 @@ export const style = () => {
     const FundoMenu = {
         background: "#E0E5F2",
         fontWeight: "bold",
+        width: "200px",
+        height: "100px"
     }
 
     const ButtonBuscar = {
         background: "#3655C7",
         color: "white",
-        borderRadius: "15px"
+        borderRadius: "15px",
+        width: "60px"
     }
 
     const CardsStilo = {

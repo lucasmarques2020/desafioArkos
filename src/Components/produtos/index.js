@@ -13,12 +13,9 @@ export const Produtos = () => {
     const estilo = style()
     return (
         <div className="container-fluid vh-100 vw-100">
-            <Navbar>
+            <Navbar collapseOnSelect expand="lg">
                 <Container>
-                    <Navbar.Brand> <img className="img-fluid" src={Logo} style={{width: "200px",
-                    height: "200px",position: 'absolute',
-                    left: 0,
-                    top: -60}}/> </Navbar.Brand>
+                    <Navbar.Brand> <img className="img-fluid" src={Logo} style={{width: "50%", className:"d-inline-block align-top"}}/> </Navbar.Brand>
                     <Navbar.Toggle />
                     <Navbar.Collapse className="justify-content-end">
                     <Button variant="link"style={{textDecoration: "none"}}>
@@ -31,7 +28,7 @@ export const Produtos = () => {
                                      <a>Olá,</a> Lucas Marques!
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu style={estilo.FundoMenu}>
-                                    <Dropdown.Item href="#/action-1"><img src={Profile}style={{width: "20px"}}/> Editar Perfil</Dropdown.Item>
+                                    <Dropdown.Item className="mb-3" href="#/action-1"><img src={Profile}style={{width: "20px"}}/> Editar Perfil</Dropdown.Item>
                                     <Dropdown.Item href="#/action-2"><img src={Exit}style={{width: "20px"}}/> SAIR</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
@@ -49,13 +46,13 @@ export const Produtos = () => {
                             aria-describedby="basic-addon2"
                         />
                         <Button variant="outline-secondary" className="col-1" style={estilo.ButtonBuscar}>
-                        <img className="img-fluid" src={Buscar}/>
+                        <img className="" src={Buscar} style={{width: "30px"}}/>
                         </Button>
                     </InputGroup>
                 </div>
                 <h2 className="mt-5 mb-5">Produtos</h2>
                 <div className="Listproduct container p-0">
-                    <div className="d-flex flex-wrap">
+                    <div className="d-flex flex-wrap justify-content-start">
                     <Card className="flex-grow-3 m-1"style={estilo.CardsStilo}>
                         <Card.Img variant="top" style={estilo.CardsStiloImg} src="https://www.lance.com.br/files/article_content/uploads/2019/05/16/5cdd47f9b157a.jpeg" />
                         <Card.Body>
