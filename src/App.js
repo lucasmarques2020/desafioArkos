@@ -1,10 +1,11 @@
 import './App.css';
 import React from 'react'
-import { Login } from './Components/login'
+import { Rotas } from './Routes'
+
 
 function App() {
   return (
-    <Login />
+    <Rotas/>
   );
 }
 
