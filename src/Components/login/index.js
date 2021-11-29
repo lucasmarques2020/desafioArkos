@@ -4,6 +4,7 @@ import { Img } from '../imgs'
 import Bk from '../assets/login.svg'
 import Logo from '../assets/logo.svg'
 import { style } from './styles'
+import { Link } from "react-router-dom"
 
 export const Login = () => {
   const estilo = style()
@@ -27,11 +28,11 @@ export const Login = () => {
                 <Form.Label className="w-100 text-start">Senha</Form.Label>
                 <Form.Control type="password" style={estilo.ControlInputForm} />
               </Form.Group>
-              <Button className="mb-4" type="submit" variant="primary" style={estilo.ButtonForm}>
-                Entrar
-              </Button>
+              <Link to="/produtos"><Button className="mb-4" type="submit" variant="primary" style={estilo.ButtonForm}>
+               Entrar
+              </Button></Link>
               <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label style={estilo.TextoAvisoCadastro}>Ainda não possui cadastro?<Button variant="link" style={estilo.TextoAvisoCadastro}>Cadastre-se</Button></Form.Label>
+                <Form.Label style={estilo.TextoAvisoCadastro}>Ainda não possui cadastro?<Button variant="link" style={estilo.TextoAvisoCadastro}><Link to="/cadastro">Cadastre-se</Link></Button></Form.Label>
               </Form.Group>
             </Form>
           </div>

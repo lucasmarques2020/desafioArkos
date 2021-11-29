@@ -7,6 +7,7 @@ import Trash from '../assets/trash.svg';
 import Profile from '../assets/profile.svg';
 import Exit from '../assets/exit.svg';
 import Star from '../assets/star.svg';
+import { Link } from "react-router-dom"
 
 export const Carrinho = () => {
     const estilo = style()
@@ -27,8 +28,8 @@ export const Carrinho = () => {
                                     <a>Olá,</a> Lucas Marques!
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu style={estilo.FundoMenu}>
-                                    <Dropdown.Item className="mb-3" href="#/action-1"><img src={Profile} style={{ width: "20px" }} /> Editar Perfil</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-2"><img src={Exit} style={{ width: "20px" }} /> SAIR</Dropdown.Item>
+                                <Link style={{ textDecoration: "none" }} to="/perfil"> <Dropdown.Item className="mb-3" href="#/action-1"><img src={Profile} style={{ width: "20px" }} /> Editar Perfil</Dropdown.Item></Link>
+                                <Link style={{ textDecoration: "none" }} to="/login">  <Dropdown.Item href="#/action-2"><img src={Exit} style={{ width: "20px" }} /> SAIR</Dropdown.Item></Link>
                                 </Dropdown.Menu>
                             </Dropdown>
                         </Navbar.Text>
@@ -37,11 +38,11 @@ export const Carrinho = () => {
             </Navbar>
             <div>
                 <Nav style={{ textDecoration: "none", marginLeft: "5%" }}>
-                    <Nav.Item>
-                        <Nav.Link style={{ color: "#FF5757" }}>Página inicial</Nav.Link>
+                <Nav.Item>
+                   <Nav.Link><Link style={{ textDecoration: "none", color: "#FF5757" }} to="/produtos">Página inicial</Link></Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link eventKey="link-1">Carrinho</Nav.Link>
+                        <Nav.Link eventKey="link-1"><Link style={{ textDecoration: "none" }} to="/carrinho">Carrinho</Link></Nav.Link>
                     </Nav.Item>
                 </Nav>
             </div>
@@ -91,7 +92,7 @@ export const Carrinho = () => {
                         <h2>Total R$ 10,00</h2>
                     </div>
                     <div className="d-flex justify-content-end">
-                    <Button className="p-2" variant="primary" style={{ border: "none", width: "200px", height: "50px", borderRadius: "15px", background: "#3655C7" }}>Comprar</Button>
+                        <Button className="p-2" variant="primary" style={{ border: "none", width: "200px", height: "50px", borderRadius: "15px", background: "#3655C7" }}>Comprar</Button>
                     </div>
                 </div>
             </div>
