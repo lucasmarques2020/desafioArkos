@@ -5,6 +5,7 @@ import Bk from '../assets/cadastro.svg'
 import Logo from '../assets/logo.svg'
 import { style } from './styles'
 import { Link } from "react-router-dom"
+import axios from "axios"
 
 export const Cadastro = () => {
   const estilo = style()
