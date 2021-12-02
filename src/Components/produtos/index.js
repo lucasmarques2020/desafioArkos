@@ -1,4 +1,4 @@
-import React, { Components } from 'react'
+import React, { useEffect, useState} from 'react'
 import { Button, Container, Navbar, Dropdown, Card, InputGroup, FormControl, Badge } from 'react-bootstrap'
 import { style } from './styles'
 import Logo from '../assets/logo.svg'
@@ -10,7 +10,14 @@ import Exit from '../assets/exit.svg'
 import Star from '../assets/star.svg'
 import { Link } from "react-router-dom"
 
+
 export const Produtos = () => {
+    const [products, setProducts] = useState([])
+    useEffect(async()=>{
+        fetch('https://fakestoreapi.com/products')
+            .then(res=>res.json())
+            .then(json=>setProducts(json))
+    }, [])
     const estilo = style()
     return (
         <div className="container-fluid vh-100 vw-100">
@@ -55,132 +62,38 @@ export const Produtos = () => {
                 <h2 className="mt-5 mb-5">Produtos</h2>
                 <div className="Listproduct container p-0">
                     <div className="d-flex flex-wrap justify-content-start">
-                        <Card className="flex-grow-3 m-1" style={estilo.CardsStilo}>
-                            <Card.Img variant="top" style={estilo.CardsStiloImg} src="https://www.lance.com.br/files/article_content/uploads/2019/05/16/5cdd47f9b157a.jpeg" />
+                        {
+                            products.map(p =>(
+                            <Card key={p.id}className="flex-grow-3 m-1" style={estilo.CardsStilo}>
+                            <div style={estilo.CardsStiloImg}>
+                            <Card.Img variant="top" style={{borderRadius: "15px", width: "100%", height: "100%"}} src={p.image} />
+                            </div>
                             <Card.Body>
-                                <Card.Title>Refrigerante</Card.Title>
+                                
+                                <Card.Title numberOfLines={1}>{p.title}</Card.Title>
+
                                 <Card.Title>
                                     <img src={Star} style={{ width: "30px" }} />
                                     <img src={Star} style={{ width: "30px" }} />
                                     <img src={Star} style={{ width: "30px" }} />
                                     <img src={Star} style={{ width: "30px" }} />
                                     <img src={Star} style={{ width: "30px" }} />
-                                    (1.895)
+                                    ({p.rating.count})
                                 </Card.Title>
-                                <Card.Text>
-                                    Ut enim ad minim veniam, quis nostrud exercício ullamco laboris nisi nostrud.
+                                <div>
+                                <Card.Text  numberOfLines = { 1 } ellipsizeMode = 'head'>
+                                    {p.description}
                                 </Card.Text>
+                                </div>
                                 <Card.Text style={{ color: "#D4D9E5" }}>
                                     Restam 15 unidades no estoque.
                                 </Card.Text>
-                                <Button variant="primary w-100" style={estilo.ButtonBuscar}><img src={Buy2} style={{ width: "30px", color: "white" }} /> R$ 5,00</Button>
+                                <Button variant="primary w-100" style={estilo.ButtonBuscar}><img src={Buy2} style={{ width: "30px", color: "white" }} /> R$: {p.price}</Button>
                             </Card.Body>
                         </Card>
-                        <Card className="flex-grow-3 m-1" style={estilo.CardsStilo}>
-                            <Card.Img variant="top" style={estilo.CardsStiloImg} src="https://www.lance.com.br/files/article_content/uploads/2019/05/16/5cdd47f9b157a.jpeg" />
-                            <Card.Body>
-                                <Card.Title>Refrigerante</Card.Title>
-                                <Card.Title>
-                                    <img src={Star} style={{ width: "30px" }} />
-                                    <img src={Star} style={{ width: "30px" }} />
-                                    <img src={Star} style={{ width: "30px" }} />
-                                    <img src={Star} style={{ width: "30px" }} />
-                                    <img src={Star} style={{ width: "30px" }} />
-                                    (1.895)
-                                </Card.Title>
-                                <Card.Text>
-                                    Ut enim ad minim veniam, quis nostrud exercício ullamco laboris nisi nostrud.
-                                </Card.Text>
-                                <Card.Text style={{ color: "#D4D9E5" }}>
-                                    Restam 15 unidades no estoque.
-                                </Card.Text>
-                                <Button variant="primary w-100" style={estilo.ButtonBuscar}><img src={Buy2} style={{ width: "30px", color: "white" }} /> R$ 5,00</Button>
-                            </Card.Body>
-                        </Card>
-                        <Card className="flex-grow-3 m-1" style={estilo.CardsStilo}>
-                            <Card.Img variant="top" style={estilo.CardsStiloImg} src="https://www.lance.com.br/files/article_content/uploads/2019/05/16/5cdd47f9b157a.jpeg" />
-                            <Card.Body>
-                                <Card.Title>Refrigerante</Card.Title>
-                                <Card.Title>
-                                    <img src={Star} style={{ width: "30px" }} />
-                                    <img src={Star} style={{ width: "30px" }} />
-                                    <img src={Star} style={{ width: "30px" }} />
-                                    <img src={Star} style={{ width: "30px" }} />
-                                    <img src={Star} style={{ width: "30px" }} />
-                                    (1.895)
-                                </Card.Title>
-                                <Card.Text>
-                                    Ut enim ad minim veniam, quis nostrud exercício ullamco laboris nisi nostrud.
-                                </Card.Text>
-                                <Card.Text style={{ color: "#D4D9E5" }}>
-                                    Restam 15 unidades no estoque.
-                                </Card.Text>
-                                <Button variant="primary w-100" style={estilo.ButtonBuscar}><img src={Buy2} style={{ width: "30px", color: "white" }} /> R$ 5,00</Button>
-                            </Card.Body>
-                        </Card>
-                        <Card className="flex-grow-3 m-1" style={estilo.CardsStilo}>
-                            <Card.Img variant="top" style={estilo.CardsStiloImg} src="https://www.lance.com.br/files/article_content/uploads/2019/05/16/5cdd47f9b157a.jpeg" />
-                            <Card.Body>
-                                <Card.Title>Refrigerante</Card.Title>
-                                <Card.Title>
-                                    <img src={Star} style={{ width: "30px" }} />
-                                    <img src={Star} style={{ width: "30px" }} />
-                                    <img src={Star} style={{ width: "30px" }} />
-                                    <img src={Star} style={{ width: "30px" }} />
-                                    <img src={Star} style={{ width: "30px" }} />
-                                    (1.895)
-                                </Card.Title>
-                                <Card.Text>
-                                    Ut enim ad minim veniam, quis nostrud exercício ullamco laboris nisi nostrud.
-                                </Card.Text>
-                                <Card.Text style={{ color: "#D4D9E5" }}>
-                                    Restam 15 unidades no estoque.
-                                </Card.Text>
-                                <Button variant="primary w-100" style={estilo.ButtonBuscar}><img src={Buy2} style={{ width: "30px", color: "white" }} /> R$ 5,00</Button>
-                            </Card.Body>
-                        </Card>
-                        <Card className="flex-grow-3 m-1" style={estilo.CardsStilo}>
-                            <Card.Img variant="top" style={estilo.CardsStiloImg} src="https://www.lance.com.br/files/article_content/uploads/2019/05/16/5cdd47f9b157a.jpeg" />
-                            <Card.Body>
-                                <Card.Title>Refrigerante</Card.Title>
-                                <Card.Title>
-                                    <img src={Star} style={{ width: "30px" }} />
-                                    <img src={Star} style={{ width: "30px" }} />
-                                    <img src={Star} style={{ width: "30px" }} />
-                                    <img src={Star} style={{ width: "30px" }} />
-                                    <img src={Star} style={{ width: "30px" }} />
-                                    (1.895)
-                                </Card.Title>
-                                <Card.Text>
-                                    Ut enim ad minim veniam, quis nostrud exercício ullamco laboris nisi nostrud.
-                                </Card.Text>
-                                <Card.Text style={{ color: "#D4D9E5" }}>
-                                    Restam 15 unidades no estoque.
-                                </Card.Text>
-                                <Button variant="primary w-100" style={estilo.ButtonBuscar}><img src={Buy2} style={{ width: "30px", color: "white" }} /> R$ 5,00</Button>
-                            </Card.Body>
-                        </Card>
-                        <Card className="flex-grow-3 m-1" style={estilo.CardsStilo}>
-                            <Card.Img variant="top" style={estilo.CardsStiloImg} src="https://www.lance.com.br/files/article_content/uploads/2019/05/16/5cdd47f9b157a.jpeg" />
-                            <Card.Body>
-                                <Card.Title>Refrigerante</Card.Title>
-                                <Card.Title>
-                                    <img src={Star} style={{ width: "30px" }} />
-                                    <img src={Star} style={{ width: "30px" }} />
-                                    <img src={Star} style={{ width: "30px" }} />
-                                    <img src={Star} style={{ width: "30px" }} />
-                                    <img src={Star} style={{ width: "30px" }} />
-                                    (1.895)
-                                </Card.Title>
-                                <Card.Text>
-                                    Ut enim ad minim veniam, quis nostrud exercício ullamco laboris nisi nostrud.
-                                </Card.Text>
-                                <Card.Text style={{ color: "#D4D9E5" }}>
-                                    Restam 15 unidades no estoque.
-                                </Card.Text>
-                                <Button variant="primary w-100" style={estilo.ButtonBuscar}><img src={Buy2} style={{ width: "30px", color: "white" }} /> R$ 5,00</Button>
-                            </Card.Body>
-                        </Card>
+                        ))
+                        }
+                        
                     </div>
                 </div>
             </div>
