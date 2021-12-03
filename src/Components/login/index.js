@@ -1,14 +1,42 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { Img } from '../imgs'
 import Bk from '../assets/login.svg'
 import Logo from '../assets/logo.svg'
 import { style } from './styles'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import axios from "axios"
+
 
 export const Login = () => {
+  const [email, setEmail] = useState([])
+  const [password, setPassword] = useState([])
+  const navigate = useNavigate()
+
+  function login(event) {
+    let user = {
+      email: email,
+      password: password
+    }
+    axios.post("http://localhost:3030/user/login/"+user.email+"/"+user.password).then(res => { 
+      if(res.data.user != null){
+        navigate("/produtos")
+      }else alert(res.data.message)
+     }).catch(Err => {alert(Err)})
+  }
+ 
+  function changeEmail(event) {
+    setEmail(event.target.value)
+  }
+  function changePassword(event) {
+    setPassword(event.target.value)
+  }
+
+    
+  
   const estilo = style()
   return (
+    
     <div className="container-fluid vh-100">
       <div className="row h-100">
         <div className="col-md-6" style={estilo.Fundo}>
@@ -22,15 +50,15 @@ export const Login = () => {
               </Form.Text>
               <Form.Group className="mb-5 mt-5" controlId="formBasicEmail">
                 <Form.Label className="w-100 text-start">Email</Form.Label>
-                <Form.Control type="email" style={estilo.ControlInputForm} />
+                <Form.Control onChange={changeEmail} type="email" style={estilo.ControlInputForm} />
               </Form.Group>
               <Form.Group className="mb-5" controlId="formBasicPassword">
                 <Form.Label className="w-100 text-start">Senha</Form.Label>
-                <Form.Control type="password" style={estilo.ControlInputForm} />
+                <Form.Control onChange={changePassword} type="password" style={estilo.ControlInputForm} />
               </Form.Group>
-              <Link to="/produtos"><Button className="mb-4" type="submit" variant="primary" style={estilo.ButtonForm}>
+              <Button onClick={login} className="mb-4" variant="primary" style={estilo.ButtonForm}>
                Entrar
-              </Button></Link>
+              </Button>
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label style={estilo.TextoAvisoCadastro}>Ainda não possui cadastro?<Button variant="link" style={estilo.TextoAvisoCadastro}><Link to="/cadastro">Cadastre-se</Link></Button></Form.Label>
               </Form.Group>

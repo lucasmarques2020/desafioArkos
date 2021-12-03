@@ -8,7 +8,7 @@ import Buy2 from '../assets/buy2.svg'
 import Profile from '../assets/profile.svg'
 import Exit from '../assets/exit.svg'
 import Star from '../assets/star.svg'
-import { Link } from "react-router-dom"
+import { Link} from "react-router-dom"
 
 
 export const Produtos = () => {
@@ -19,6 +19,7 @@ export const Produtos = () => {
             .then(json=>setProducts(json))
     }, [])
     const estilo = style()
+
     return (
         <div className="container-fluid vh-100 vw-100">
             <Navbar collapseOnSelect expand="lg">
@@ -28,13 +29,12 @@ export const Produtos = () => {
                     <Navbar.Collapse className="justify-content-end">
                     <Link to="/carrinho"><Button variant="link" style={{ textDecoration: "none" }}>
                             <img src={Buy} style={{ width: "30px" }} /> <Badge bg="danger">2</Badge>
-                            <span className="visually-hidden">unread messages</span>
                         </Button>
                         </Link>
                         <Navbar.Text>
                             <Dropdown>
                                 <Dropdown.Toggle variant="link" id="dropdown-basic" style={estilo.ButtonMenu}>
-                                    <a>Olá,</a> Lucas Marques!
+                                    Olá, Lucas Marques!
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu style={estilo.FundoMenu}>
                                 <Link style={{ textDecoration: "none" }} to="/perfil"><Dropdown.Item className="mb-3" href="#/action-1"><img src={Profile} style={{ width: "20px" }} /> Editar Perfil</Dropdown.Item></Link>
@@ -70,7 +70,7 @@ export const Produtos = () => {
                             </div>
                             <Card.Body>
                                 
-                                <Card.Title numberOfLines={1}>{p.title}</Card.Title>
+                                <Card.Title>{p.title}</Card.Title>
 
                                 <Card.Title>
                                     <img src={Star} style={{ width: "30px" }} />
@@ -81,7 +81,7 @@ export const Produtos = () => {
                                     ({p.rating.count})
                                 </Card.Title>
                                 <div>
-                                <Card.Text  numberOfLines = { 1 } ellipsizeMode = 'head'>
+                                <Card.Text>
                                     {p.description}
                                 </Card.Text>
                                 </div>
