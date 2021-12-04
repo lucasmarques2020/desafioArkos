@@ -66,7 +66,7 @@ export const Produtos = () => {
                         {
                             products.map(p => (
                                 <Card key={p.id} className="flex-grow-3 m-1" style={estilo.CardsStilo}>
-                                    <div  className="h-50 row align-items-center">
+                                    <div  className=" d-flex align-items-center justify-content-center">
                                         <Card.Img className="img-fluid" variant="top"  style={estilo.CardsStiloImg} src={p.image} />
                                     </div>
                                     <Card.Body>
