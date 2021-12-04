@@ -22,13 +22,14 @@ export const style = () => {
 
     const CardsStilo = {
         borderRadius: "15px",
-        maxWidth: '18rem',
+        maxWidth: '15rem',
         margin: 0, 
         padding: 0
     }
 
     const CardsStiloImg = {
-        maxWidth: "80%"
+        height: "200px",
+        width: "auto"
     }
 
     

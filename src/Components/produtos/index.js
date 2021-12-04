@@ -66,12 +66,12 @@ export const Produtos = () => {
                         {
                             products.map(p => (
                                 <Card key={p.id} className="flex-grow-3 m-1" style={estilo.CardsStilo}>
-                                    <div className="h-100" style={estilo.CardsStiloImg}>
-                                        <Card.Img className="img-fluid" variant="top"  style={{ borderRadius: "15px", width: "100%", height: "80%" }} src={p.image} />
+                                    <div  className="h-50 row align-items-center">
+                                        <Card.Img className="img-fluid" variant="top"  style={estilo.CardsStiloImg} src={p.image} />
                                     </div>
                                     <Card.Body>
 
-                                        <Card.Title>{p.title}</Card.Title>
+                                        <Card.Title className="col" style={{overflow: "hidden", height: "20px"}}>{p.title}</Card.Title>
 
                                         <Card.Title>
                                             <img src={Star} style={{ width: "30px" }} />
@@ -82,7 +82,7 @@ export const Produtos = () => {
                                             ({p.rating.count})
                                         </Card.Title>
                                         <div>
-                                            <Card.Text>
+                                            <Card.Text style={{overflow: "hidden", height: "100px"}}>
                                                 {p.description}
                                             </Card.Text>
                                         </div>
