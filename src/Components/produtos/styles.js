@@ -28,8 +28,7 @@ export const style = () => {
     }
 
     const CardsStiloImg = {
-        width: "200px",
-        height: "200px"
+        maxWidth: "80%"
     }
 
     
