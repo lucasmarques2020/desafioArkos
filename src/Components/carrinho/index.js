@@ -8,9 +8,11 @@ import Profile from '../assets/profile.svg';
 import Exit from '../assets/exit.svg';
 import Star from '../assets/star.svg';
 import { Link } from "react-router-dom"
+import {useCookies} from 'react-cookie'
 
 export const Carrinho = () => {
     const estilo = style()
+    const [cookie, setCookie] = useCookies(['user'])
     return (
         <div className="container-fluid vh-100 vw-100">
             <Navbar collapseOnSelect expand="lg">
@@ -25,7 +27,7 @@ export const Carrinho = () => {
                         <Navbar.Text>
                             <Dropdown>
                                 <Dropdown.Toggle variant="link" id="dropdown-basic" style={estilo.ButtonMenu}>
-                                    <a>Olá,</a> Lucas Marques!
+                                    <a>Olá,</a> {cookie.name}
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu style={estilo.FundoMenu}>
                                 <Link style={{ textDecoration: "none" }} to="/perfil"> <Dropdown.Item className="mb-3" href="#/action-1"><img src={Profile} style={{ width: "20px" }} /> Editar Perfil</Dropdown.Item></Link>

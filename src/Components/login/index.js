@@ -6,13 +6,14 @@ import Logo from '../assets/logo.svg'
 import { style } from './styles'
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
+import {useCookies} from 'react-cookie'
 
 
 export const Login = () => {
   const [email, setEmail] = useState([])
   const [password, setPassword] = useState([])
   const navigate = useNavigate()
-
+  const [cookie, setCookie] = useCookies(['user'])
   function login(event) {
     let user = {
       email: email,
@@ -20,6 +21,9 @@ export const Login = () => {
     }
     axios.post("https://desafioarkos.herokuapp.com/user/login/"+user.email+"/"+user.password).then(res => { 
       if(res.data.user != null){
+        setCookie('name',res.data.user.name,{path:'/'})
+        setCookie('id',res.data.user.id,{path:'/'})
+        setCookie('email',res.data.user.email,{path:'/'})
         navigate("/produtos")
       }else alert(res.data.message)
      }).catch(Err => {alert(Err)})

@@ -1,4 +1,4 @@
-import React, { Components } from 'react'
+import React, { Components, useState } from 'react'
 import { Button, Container, Navbar, Dropdown, Form, InputGroup, FormControl, Badge, Nav } from 'react-bootstrap'
 import { style } from './styles'
 import Logo from '../assets/logo.svg'
@@ -6,9 +6,34 @@ import Buy from '../assets/buy.svg'
 import Profile from '../assets/profile.svg'
 import Exit from '../assets/exit.svg'
 import { Link } from "react-router-dom"
+import {useCookies} from 'react-cookie'
+import axios from "axios"
 
 export const EditarPerfil = () => {
     const estilo = style()
+    const [name, setName] = useState([])
+    const [email, setEmail] = useState([])
+    const [emailNew, setEmailNew] = useState([])
+    const [cookie, setCookie] = useCookies(['user'])
+    function send(event) {
+        let user = {
+          name: name,
+          email: email
+        }
+        axios.patch("https://desafioarkos.herokuapp.com/user/"+cookie.id, user).then(res => { 
+            setCookie('name', name,{path:'/'})
+            setCookie('email',email,{path:'/'})
+            alert(res.data.message) }).catch(Err => {alert(Err)})
+      }
+      function changeName(event) {
+        setName(event.target.value)
+      }
+      function changeEmail(event) {
+        setEmail(event.target.value)
+      }
+      function changeEmailNew(event) {
+        setEmailNew(event.target.value)
+      }
     return (
         <div className="container-fluid vh-100 vw-100">
             <Navbar collapseOnSelect expand="lg">
@@ -23,7 +48,7 @@ export const EditarPerfil = () => {
                         <Navbar.Text>
                             <Dropdown>
                                 <Dropdown.Toggle variant="link" id="dropdown-basic" style={estilo.ButtonMenu}>
-                                    <a>Olá,</a> Lucas Marques!
+                                    <a>Olá,</a> {cookie.name}
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu style={estilo.FundoMenu}>
                                 <Link style={{ textDecoration: "none" }} to="/perfil"> <Dropdown.Item className="mb-3" href="#/action-1"><img src={Profile} style={{ width: "20px" }} /> Editar Perfil</Dropdown.Item></Link>
@@ -54,17 +79,17 @@ export const EditarPerfil = () => {
                                 <Form className="w-100" style={estilo.Formul}>
                                     <Form.Group className="mb-5 mt-5" controlId="formBasicEmail">
                                         <Form.Label className="w-100 text-start">Nome completo</Form.Label>
-                                        <Form.Control type="text" style={estilo.ControlInputForm} />
+                                        <Form.Control onChange={changeName} type="text" style={estilo.ControlInputForm} />
                                     </Form.Group>
                                     <Form.Group className="mb-5" controlId="formBasicPassword">
                                         <Form.Label className="w-100 text-start">E-mail atual</Form.Label>
-                                        <Form.Control type="email" style={estilo.ControlInputForm} />
+                                        <Form.Control onChange={changeEmail} type="email" style={estilo.ControlInputForm} />
                                     </Form.Group>
                                     <Form.Group className="mb-5" controlId="formBasicPassword">
                                         <Form.Label className="w-100 text-start">Novo e-mail</Form.Label>
-                                        <Form.Control type="email" style={estilo.ControlInputForm} />
+                                        <Form.Control onChange={changeEmailNew} type="email" style={estilo.ControlInputForm} />
                                     </Form.Group>
-                                    <Button className="mb-4" type="submit" variant="primary" style={estilo.ButtonForm}>
+                                    <Button className="mb-4" onClick={send} variant="primary" style={estilo.ButtonForm}>
                                         Alterar dados
                                     </Button>
                                 </Form>
