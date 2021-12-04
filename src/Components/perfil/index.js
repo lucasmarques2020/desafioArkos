@@ -1,4 +1,4 @@
-import React, { Components, useState } from 'react'
+import React, { Components, useState, useEffect } from 'react'
 import { Button, Container, Navbar, Dropdown, Form, InputGroup, FormControl, Badge, Nav } from 'react-bootstrap'
 import { style } from './styles'
 import Logo from '../assets/logo.svg'
@@ -15,6 +15,12 @@ export const EditarPerfil = () => {
     const [email, setEmail] = useState([])
     const [emailNew, setEmailNew] = useState([])
     const [cookie, setCookie] = useCookies(['user'])
+
+    useEffect(async()=>{
+        setName(cookie.name)
+        setEmail(cookie.email)
+    }, [])
+    
     function send(event) {
         let user = {
           name: name,
@@ -79,11 +85,11 @@ export const EditarPerfil = () => {
                                 <Form className="w-100" style={estilo.Formul}>
                                     <Form.Group className="mb-5 mt-5" controlId="formBasicEmail">
                                         <Form.Label className="w-100 text-start">Nome completo</Form.Label>
-                                        <Form.Control onChange={changeName} type="text" style={estilo.ControlInputForm} />
+                                        <Form.Control value={name} onChange={changeName} type="text" style={estilo.ControlInputForm} />
                                     </Form.Group>
                                     <Form.Group className="mb-5" controlId="formBasicPassword">
                                         <Form.Label className="w-100 text-start">E-mail atual</Form.Label>
-                                        <Form.Control onChange={changeEmail} type="email" style={estilo.ControlInputForm} />
+                                        <Form.Control value={email} onChange={changeEmail} type="email" style={estilo.ControlInputForm} />
                                     </Form.Group>
                                     <Form.Group className="mb-5" controlId="formBasicPassword">
                                         <Form.Label className="w-100 text-start">Novo e-mail</Form.Label>
