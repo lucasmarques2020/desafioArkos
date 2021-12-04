@@ -18,7 +18,7 @@ export const Login = () => {
       email: email,
       password: password
     }
-    axios.post("http://localhost:3030/user/login/"+user.email+"/"+user.password).then(res => { 
+    axios.post("https://desafioarkos.herokuapp.com/user/login/"+user.email+"/"+user.password).then(res => { 
       if(res.data.user != null){
         navigate("/produtos")
       }else alert(res.data.message)

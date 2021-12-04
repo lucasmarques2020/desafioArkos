@@ -21,7 +21,7 @@ export const Cadastro = () => {
       email: email,
       password: password
     }
-    axios.post("http://localhost:3030/user", user).then(res => { alert(res.data.message) }).catch(Err => {alert(Err)})
+    axios.post("https://desafioarkos.herokuapp.com/user", user).then(res => { alert(res.data.message) }).catch(Err => {alert(Err)})
   }
   function changeName(event) {
     setName(event.target.value)
