@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Form } from 'react-bootstrap'
+import { Button, Form, Modal } from 'react-bootstrap'
 import { Img } from '../imgs'
 import Bk from '../assets/login.svg'
 import Logo from '../assets/logo.svg'
@@ -11,10 +11,24 @@ import {useCookies} from 'react-cookie'
 
 export const Login = () => {
   const [email, setEmail] = useState([])
+  const [message, setMessage] = useState([])
   const [password, setPassword] = useState([])
   const navigate = useNavigate()
+  const [show, setShow] = useState(false)
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
   const [cookie, setCookie] = useCookies(['user'])
   function login(event) {
+    if (email.length === 0) {
+      setMessage("Email não preenchido!")
+      setShow(true)
+      return
+    }
+    if (password.length === 0) {
+      setMessage("Senha não preenchida!")
+      setShow(true)
+      return
+    }
     let user = {
       email: email,
       password: password
@@ -25,7 +39,10 @@ export const Login = () => {
         setCookie('id',res.data.user.id,{path:'/'})
         setCookie('email',res.data.user.email,{path:'/'})
         navigate("/produtos")
-      }else alert(res.data.message)
+      }else {
+        setMessage(res.data.message)
+        setShow(true)
+      }
      }).catch(Err => {alert(Err)})
   }
  
@@ -67,6 +84,24 @@ export const Login = () => {
                 <Form.Label style={estilo.TextoAvisoCadastro}>Ainda não possui cadastro?<Button variant="link" style={estilo.TextoAvisoCadastro}><Link to="/cadastro">Cadastre-se</Link></Button></Form.Label>
               </Form.Group>
             </Form>
+            <Modal
+              show={show}
+              onHide={handleClose}
+              backdrop="static"
+              keyboard={false}
+            >
+              <Modal.Header closeButton>
+                <Modal.Title>Status</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <h2>{message}</h2>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="danger" onClick={handleClose}>
+                  Fechar
+                </Button>
+              </Modal.Footer>
+            </Modal>
           </div>
         </div>
       </div>
